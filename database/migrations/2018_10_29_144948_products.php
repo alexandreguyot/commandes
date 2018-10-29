@@ -15,8 +15,10 @@ class Products extends Migration
     {
         Schema::create('products', function(Blueprint $table) {
             $table->increments('id');
+            $table->string('ref');
+            $table->string('nom');
+            $table->float('prix');
             $table->timestamps();
-            $table->rememberToken();
         });
     }
 
