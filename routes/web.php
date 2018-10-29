@@ -11,10 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+// Groupe Commandes
+Route::prefix('/commandes')->group(function () {
+    Route::get('nouvelle', 'CommandController@show')->name('create');
+    Route::get('edition/{id}', 'CommandController@show')->name('edit');
+    Route::get('liste', 'CommandController@list');
+    Route::post('creation', 'CommandController@create');
+    Route::put('edition/$id', 'CommandController@edit');
+    Route::delete('suppression/$id', 'CommandController@delete');
+});
