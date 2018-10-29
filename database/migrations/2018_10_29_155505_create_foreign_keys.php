@@ -14,12 +14,12 @@ class CreateForeignKeys extends Migration
     public function up()
     {
         Schema::table('commands_products', function(Blueprint $table) {
-            $table->foreign('category_id')->references('id')->on('categories')
+            $table->foreign('commands_id')->references('id')->on('commands')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
-        Schema::table('category_post', function(Blueprint $table) {
-            $table->foreign('post_id')->references('id')->on('posts')
+        Schema::table('commands_products', function(Blueprint $table) {
+            $table->foreign('products_id')->references('id')->on('products')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
@@ -32,6 +32,6 @@ class CreateForeignKeys extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('commands_products');
     }
 }
