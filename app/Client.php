@@ -15,7 +15,6 @@ class Client extends Model
         'company',
         'address',
         'telephone',
-
     ];
 
     public function command() {
