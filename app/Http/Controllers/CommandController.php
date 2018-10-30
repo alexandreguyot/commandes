@@ -16,6 +16,7 @@ class CommandController extends Controller
         $livraison = Commands::getPossibleEnumValues('livraison');
         $categorie = Client::getPossibleEnumValues('categorie');
         $products = Products::all();
+        $clients = Client::all();
         return view('commands.show')->with([
             'products' => $products,
             'type' => $type,
@@ -23,6 +24,7 @@ class CommandController extends Controller
             'statut' => $statut,
             'livraison' => $livraison,
             'categorie' => $categorie,
+            'clients' => $clients,
         ]);
     }
 

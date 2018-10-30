@@ -14,6 +14,7 @@
                                 <div class="form-group col-md-12">
                                     <div class="panel-title"><h4>Client</h4></div>
                                 </div>
+                                
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="nom">Nom</label>
