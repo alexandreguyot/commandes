@@ -17,10 +17,10 @@ Route::get('/', 'HomeController@index')->name('home');
 
 // Groupe Commandes
 Route::prefix('/commandes')->group(function () {
-    Route::get('nouvelle', 'CommandController@show')->name('create');
-    Route::get('edition/{id}', 'CommandController@show')->name('edit');
-    Route::get('liste', 'CommandController@list');
-    Route::post('creation', 'CommandController@create');
-    Route::put('edition/$id', 'CommandController@edit');
-    Route::delete('suppression/$id', 'CommandController@delete');
+    Route::get('creation', ['as'=>'get.commandes.creation','uses' => 'CommandController@create_show']);
+    Route::get('edition/{id}', ['as'=>'get.commandes.edition', 'uses' => 'CommandController@edit_show']);
+    Route::get('liste', ['as'=>'get.commandes.liste', 'uses' => 'CommandController@list']);
+    Route::post('creation', ['as'=>'post.commandes.creation', 'uses' => 'CommandController@create']);
+    Route::put('edition/$id', ['as'=>'put.commandes.edition', 'uses' => 'CommandController@edit']);
+    Route::delete('suppression/$id', ['as'=>'delete.commandes.suppression', 'uses' => 'CommandController@delete']);
 });

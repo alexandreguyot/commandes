@@ -2,19 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
 use App\Commands;
+use App\Products;
 use Illuminate\Http\Request;
 
 class CommandController extends Controller
 {
-    public function show($id) {
-        if ($id) {
-            $command = Commands::find($id);
-            return view('commands.show')->with('command', $command);
-        } else {
-            return view('commands.show');
-        }
+    public function create_show() {
+        $type = Commands::getPossibleEnumValues('type');
+        $type_paiement = Commands::getPossibleEnumValues('type_paiement');
+        $statut = Commands::getPossibleEnumValues('statut');
+        $livraison = Commands::getPossibleEnumValues('livraison');
+        $categorie = Client::getPossibleEnumValues('categorie');
+        $products = Products::all();
+        return view('commands.show')->with([
+            'products' => $products,
+            'type' => $type,
+            'type_paiement' => $type_paiement,
+            'statut' => $statut,
+            'livraison' => $livraison,
+            'categorie' => $categorie,
+        ]);
     }
+
+    public function edit_show(Request $request) {
+        $command = Commands::find($request->id);
+        return view('commands.show')->with('command', $command);
+    }
+
 
     public function create() {
 

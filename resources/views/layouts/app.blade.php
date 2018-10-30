@@ -21,7 +21,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         @auth
-                            <button type="button" href="{{ route('create') }}" >Nouvelle Commande</button>
+                            <a role="button" href="{{ route('get.commandes.creation') }}" >Nouvelle Commande</a>
                         @endauth
                     </ul>
 
