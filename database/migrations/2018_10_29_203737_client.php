@@ -21,6 +21,7 @@ class Client extends Migration
             $table->string('adresse');
             $table->string('code_postal');
             $table->string('ville');
+            $table->string('pays');
             $table->string('telephone');
             $table->string('telephone_secondaire');
             $table->string('email');
@@ -40,6 +41,6 @@ class Client extends Migration
      */
     public function down()
     {
-        Schema::drop('client');
+        Schema::drop('clients');
     }
 }

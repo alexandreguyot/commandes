@@ -13,10 +13,24 @@ class Client extends Model
      * @var array
      */
     protected $fillable = [
-        'company',
-        'address',
+        'categorie',
+        'nom',
+        'prenom',
+        'adresse',
+        'code_postal',
+        'ville',
+        'pays',
         'telephone',
+        'telephone_secondaire',
+        'email',
+        'livraison_nom',
+        'livraison_prenom',
+        'livraison_adresse',
+        'livraison_code_postal',
+        'livraison_ville',
     ];
+
+    public $timestamps = true;
 
     public static function getPossibleEnumValues($name){
         $instance = new static; // create an instance of the model to be able to get the table name

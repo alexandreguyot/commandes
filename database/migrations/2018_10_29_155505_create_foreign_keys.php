@@ -18,6 +18,7 @@ class CreateForeignKeys extends Migration
             $table->increments('id');
             $table->integer('commands_id')->unsigned();
             $table->integer('products_id')->unsigned();
+            $table->integer('nombre')->unsigned();
             $table->foreign('commands_id')->references('id')->on('commands')
                 ->onDelete('restrict')
                 ->onUpdate('restrict');

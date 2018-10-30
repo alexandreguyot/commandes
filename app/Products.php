@@ -17,6 +17,8 @@ class Products extends Model
         'prix',
     ];
 
+    public $timestamps = true;
+
     public function commands()
     {
         return $this->belongsToMany(Commands::class);
