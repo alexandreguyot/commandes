@@ -11,7 +11,18 @@ class Commands extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'date',
+        'type',
+        'type_paiement',
+        'statut',
+        'livraison',
+        'prix_livraison',
+        'THT',
+        'TTC',
+        'remise',
+        'commentaires',
+    ];
 
     public function client() {
         return $this->belongsTo(Client::class);

@@ -18,11 +18,13 @@ class Commands extends Migration
             $table->integer('client_id');
             $table->date('date');
             $table->enum('type', ['Devis', 'Commande']);
-            $table->enum('type_paiment', ['Chèque', 'Carte Bancaire', 'Chèque']);
+            $table->enum('type_paiement', ['Chèque', 'Carte Bancaire', 'Virement']);
             $table->enum('statut', ['Attente de Paiement', 'Paiement Accepté', 'Commande terminée', 'Problème de paiement', 'Mise en quarantaine']);
             $table->enum('livraison', ['Livraison Colissimo', 'Livraison 1 personne', 'Livraison 2 personnes']);
+            $table->float('prix_livraison');
             $table->integer('THT');
             $table->integer('TTTC');
+            $table->float('remise');
             $table->longText('commentaires');
             $table->timestamps();
         });

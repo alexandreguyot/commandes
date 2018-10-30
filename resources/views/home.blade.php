@@ -1,23 +1,42 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+    @auth
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Liste des commandes</div>
 
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <th>Numéro</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Type de Paiement</th>
+                                    <th>Statut</th>
+                                    <th>Livraison</th>
+                                    <th>THT</th>
+                                    <th>TTTC</th>
+                                </tr>
+                                @foreach($commands as $command)
+                                    <tr>
+                                        <td>{{ $command->id }}</td>
+                                        <td>{{ $command->date }}</td>
+                                        <td>{{ $command->type }}</td>
+                                        <td>{{ $command->type_paiement }}</td>
+                                        <td>{{ $command->statut }}</td>
+                                        <td>{{ $command->livraison }}</td>
+                                        <td>{{ $command->THT }}</td>
+                                        <td>{{ $command->TTTC }}</td>
+                                    </tr>
+                                @endforeach
+                            </table>
                         </div>
-                    @endif
-
-                    Vous êtes connecté
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    @endauth
 @endsection
