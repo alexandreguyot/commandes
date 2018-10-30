@@ -10,36 +10,6 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-
-                    <ul class="nav navbar-nav navbar-right">
-                        @guest
-                            <li><a href="{{ route('login') }}">Se connecter</a></li>
-                            <li><a href="{{ route('register') }}">S'enregistrer</a></li>
-                        @else
-                            <li class="dropdown">
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Se déconnecter
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
         @yield('content')
     </div>
 
