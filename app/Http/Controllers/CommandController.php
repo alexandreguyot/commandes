@@ -44,6 +44,10 @@ class CommandController extends Controller
 
     }
 
+    public function print($id) {
+        return view('commands.print');
+    }
+
     public function delete($id) {
 
     }
