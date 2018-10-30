@@ -185,6 +185,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('js/commands.js') }}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.0.2/less.min.js" ></script>
 </body>
 </html>
