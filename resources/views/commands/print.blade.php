@@ -5,26 +5,25 @@
     @auth
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 printView">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h2>Votre bon de commande MARJ1824 {{-- {{$commands->id}} --}}</h2>
                         </div>
-                        <duv class="panel-body">
+                        <div class="panel-body">
                             <div class="col-md-12">
                                 <h3>BIOSENSE / NLD INTERNATIONAL</h3>
                             </div>
-                            <div class="col-md-6">
+                            <div class="biosenseData col-md-6 col-xs-6">
                                 <span>15 rue des Doizelleries</span><br/>
                                 <span>44840 Les Sorinières (Nantes)</span><br/>
                                 <span>France</span>
-                                <hr>
                                 <span>Tél. : +33 2 40 84 02 38   Fax : 02 40 84 02 38</span><br/>
                                 <span>SAS au capital de 50 000 euros - RCS Nantes</span><br/>
                                 <span>APE : 4690Z    SIRET : 49786313400035</span><br/>
                                 <span>N° TVA : FR01497863134</span>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 col-xs-6">
                                 <p>Danièle Puech</p>
                                 <ul>
                                     <li>128 RUE DE LA PÉPINIÈRE</li>
@@ -93,7 +92,7 @@
                             <div class="col-md-12">
                                 <p>Clause de réserve de propriété : le vendeur conserve la propri?t? pleine et entière des marchandises vendues jusqu'au paiement complet du prix, en application de la loi du 12 mai 1980.</p>
                             </div>
-                        </duv>
+                        </div>
                     </div>
                 </div>
             </div>
