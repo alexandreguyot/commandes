@@ -14,7 +14,15 @@
                                 <div class="form-group col-md-12">
                                     <div class="panel-title"><h4>Client</h4></div>
                                 </div>
-                                
+                                <div class="form-group col-md-12">
+                                    <label for="liste_client">Recherche un client</label>
+                                    <select id="liste_client" name="liste_client" class="form-control">
+                                        @foreach($clients as $client)
+                                            <option value="{{$client}}" onselect="remplirClient(this.value)">{{ $client->nom }} {{ $client->prenom }} {{ $client->ville }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <input type="hidden" value="false" name="client_id">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="nom">Nom</label>
@@ -74,13 +82,28 @@
                                     <div class="panel-title"><h4>Produits</h4></div>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="categorie">Liste des produits</label>
-                                    <select id="products" name="products" class="form-control">
+                                    <label for="liste_products">Liste des produits</label>
+                                    <select id="liste_products" name="liste_products[]" multiple="multiple" class="form-control">
                                         @foreach($products as $key => $product)
-                                            <option value="{{$key}}">{{$product->nom}} - {{$product->prix}}</option>
+                                            <option value="{{ $product }}" onclick="remplirProduit()"> {{ $product->ref }} - {{ $product->nom }} - {{ $product->prix }}€</option>
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group col-md-12">
+                                    <div class="panel-title"><h4>Liste des produits dans la commande</h4></div>
+                                </div>
+                                <table class="table table-bordered products">
+                                    <tr>
+                                        <th>Reférence</th>
+                                        <th>Nom</th>
+                                        <th>Prix</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ $command->id }}</td>
+                                        <td>{{ $command->date }}</td>
+                                        <td>{{ $command->type }}</td>
+                                    </tr>
+                                </table>
 
                             </form>
                         </div>
