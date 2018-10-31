@@ -6,6 +6,7 @@ use App\Client;
 use App\Commands;
 use App\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CommandController extends Controller
 {
@@ -35,7 +36,13 @@ class CommandController extends Controller
 
 
     public function create(Request $request) {
-        dd($request);
+        $client_id = $request->get('client_id');
+        if ($client_id === "null") {
+            $client = $this->createClient($request);
+        }
+        $client_id = $client_id == "null" ? $client->id : $client_id;
+        $this->createCommand($request, $client_id);
+        return Redirect::route('home');
     }
 
     public function list() {
@@ -47,10 +54,52 @@ class CommandController extends Controller
     }
 
     public function print($id) {
-        return view('commands.print');
+        $commands = Commands::find($id);
+        return view('commands.print')->with('commands', $commands);
     }
 
     public function delete($id) {
 
+    }
+
+    private function createCommand($request, $client_id) {
+        $command = new Commands();
+        $command->client_id = $client_id;
+        $command->date = $request->get('date');
+        $command->type = $request->get('type');
+        $command->type_paiement = $request->get('type_paiement');
+        $command->statut = $request->get('statut');
+        $command->livraison = $request->get('livraison');
+        $command->prix_livraison = $request->get('prix_livraison');
+        $command->THT = intval($request->get('TTTC')) / 1.2;
+        $command->TTTC = $request->get('TTTC');
+        $command->remise = $request->get('remise');
+        $command->commentaires = $request->get('commentaires');
+        $command->save();
+
+        foreach ($request->get('products') as $idProduct => $nombre) {
+            $command->products()->attach($idProduct, ['nombre' => $nombre['nombre']]);
+        }
+    }
+
+    private function createClient($request) {
+        $client = new Client();
+        $client->categorie = $request->get('categorie');
+        $client->nom = $request->get('nom');
+        $client->prenom = $request->get('prenom');
+        $client->adresse = $request->get('adresse');
+        $client->code_postal = $request->get('code_postal');
+        $client->ville = $request->get('ville');
+        $client->pays = $request->get('pays');
+        $client->telephone = $request->get('telephone');
+        $client->telephone_secondaire = $request->get('telephone_secondaire');
+        $client->email = $request->get('email');
+        $client->livraison_nom = $request->get('livraison_nom');
+        $client->livraison_prenom = $request->get('livraison_prenom');
+        $client->livraison_adresse = $request->get('livraison_adresse');
+        $client->livraison_code_postal = $request->get('livraison_code_postal');
+        $client->livraison_ville = $request->get('livraison_ville');
+        $client->save();
+        return $client;
     }
 }

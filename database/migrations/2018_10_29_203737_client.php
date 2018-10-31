@@ -23,13 +23,13 @@ class Client extends Migration
             $table->string('ville');
             $table->string('pays');
             $table->string('telephone');
-            $table->string('telephone_secondaire');
+            $table->string('telephone_secondaire')->nullable();
             $table->string('email');
-            $table->string('livraison_nom');
-            $table->string('livraison_prenom');
-            $table->string('livraison_adresse');
-            $table->string('livraison_code_postal');
-            $table->string('livraison_ville');
+            $table->string('livraison_nom')->nullable();
+            $table->string('livraison_prenom')->nullable();
+            $table->string('livraison_adresse')->nullable();
+            $table->string('livraison_code_postal')->nullable();
+            $table->string('livraison_ville')->nullable();
             $table->timestamps();
         });
     }

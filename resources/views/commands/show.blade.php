@@ -11,6 +11,25 @@
 
                         <div class="panel-body">
                             <form action="{{route('post.commandes.creation')}}"  method="post" >
+                                {{ csrf_field() }}
+                                <div class="part">
+                                    <div class="form-group col-md-12">
+                                        <div class="panel-title"><h4>Informations</h4></div>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="date">Date</label>
+                                        <input type="date" class="form-control" id="date" name="date" placeholder="Date">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="type">Type</label>
+                                        <select id="type" name="type" class="form-control">
+                                            @foreach($type as $type)
+                                                <option value="{{$type}}">{{$type}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="part">
                                     <div class="form-group col-md-12">
                                         <div class="panel-title"><h4>1 / Client</h4></div>
@@ -23,7 +42,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <input type="hidden" value="false" name="client_id">
+                                    <input type="hidden" value="null" name="client_id">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="nom">Nom</label>
@@ -120,6 +139,12 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="remise">Remise</label>
+                                            <input type="text" class="form-control" id="remise" name="remise" placeholder="Remise">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="part">
                                     <div class="form-row">
@@ -155,12 +180,21 @@
 
                                             </tbody>
                                             <tfoot>
-                                                <tr>
-                                                    <td colspan="4">Total TTC</td>
-                                                    <td id="totale"></td>
-                                                </tr>
+                                            <tr>
+                                                <td colspan="4">Total TTC</td>
+                                                <td>
+                                                    <input type="hidden" id="TTTC" name="TTTC" value="0">
+                                                    <label id="totale_label"></label>
+                                                </td>
+                                            </tr>
                                             </tfoot>
                                         </table>
+                                    </div>
+                                </div>
+                                <div class="part">
+                                    <div class="form-group col-md-12">
+                                        <label for="commentaires">Commentaires</label>
+                                        <textarea class="form-control" id="commentaires" name="commentaires" placeholder="Commentaires"></textarea>
                                     </div>
                                 </div>
                                 <div class="part">

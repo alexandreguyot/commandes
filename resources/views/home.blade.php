@@ -29,8 +29,8 @@
                                             <td>{{ $command->type_paiement }}</td>
                                             <td>{{ $command->statut }}</td>
                                             <td>{{ $command->livraison }}</td>
-                                            <td>{{ $command->THT }}</td>
-                                            <td>{{ $command->TTTC }}</td>
+                                            <td>{{ $command->THT }} €</td>
+                                            <td>{{ $command->TTTC }} €</td>
                                         </tr>
                                     @endforeach
                                 </table>

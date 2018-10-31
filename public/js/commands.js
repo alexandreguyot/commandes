@@ -31,7 +31,10 @@ function addTotalePrice(prix) {
 	setPrice();
 }
 
-function removeTotalePrice(prix) {
+function removeTotalePrice(prix, nb) {
+	if (nb > 1 ) {
+		prix = nb * prix;
+	}
 	totale -= prix;
 	if (totale < 0 ) {
 		totale = 0;
@@ -39,7 +42,8 @@ function removeTotalePrice(prix) {
 	setPrice();
 }
 function setPrice() {
-	$('#totale').text(totale+ ' €')
+	$('#TTTC').val(totale);
+	$('#totale_label').text(totale+ ' €')
 }
 
 $('#list_products').on('select2:select', function(e) {
@@ -51,8 +55,9 @@ $('#list_products').on('select2:select', function(e) {
 $('#list_products').on('select2:unselect', function(e) {
 	const data = e.params.data;
 	const product = JSON.parse(data.id);
+	const nombre = $(`#product_${product.id}_numb`).val();
 	$('#product_id_'+product.id).remove();
-	removeTotalePrice(product.prix);
+	removeTotalePrice(product.prix, parseInt(nombre));
 });
 
 
@@ -97,7 +102,7 @@ function addProducts (product)
 			</td>
 			<td> 
 				<button type="button" class="btn btn-default btn-sm" onclick="deleteNumberProduct(${product.id}, ${product.prix})">-</button>
-				<input id="product_${product.id}_numb" name="products[id][nombre]" value="1">
+				<input id="product_${product.id}_numb" name="products[${product.id}][nombre]" value="1">
 				<button type="button" class="btn btn-default btn-sm" onclick="addNumberProduct(${product.id}, ${product.prix})">+</button>
 			 </td>
 			<td> 			

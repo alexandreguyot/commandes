@@ -21,7 +21,7 @@ class Commands extends Model
         'livraison',
         'prix_livraison',
         'THT',
-        'TTC',
+        'TTTC',
         'remise',
         'commentaires',
     ];
