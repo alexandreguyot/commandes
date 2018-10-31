@@ -22,6 +22,6 @@ Route::prefix('/commandes')->group(function () {
     Route::get('liste', ['as'=>'get.commandes.liste', 'uses' => 'CommandController@list']);
     Route::get('impression/{id}', ['as'=>'get.commandes.impression', 'uses' => 'CommandController@print']);
     Route::post('creation', ['as'=>'post.commandes.creation', 'uses' => 'CommandController@create']);
-    Route::put('edition/$id', ['as'=>'put.commandes.edition', 'uses' => 'CommandController@edit']);
-    Route::delete('suppression/$id', ['as'=>'delete.commandes.suppression', 'uses' => 'CommandController@delete']);
+    Route::put('edition/{id}', ['as'=>'put.commandes.edition', 'uses' => 'CommandController@edit']);
+    Route::delete('suppression/{id}', ['as'=>'delete.commandes.suppression', 'uses' => 'CommandController@delete']);
 });

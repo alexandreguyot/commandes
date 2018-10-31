@@ -2,13 +2,27 @@
 
 $.fn.select2.defaults.set('language', 'fr');
 $.fn.select2.defaults.set( "theme", "bootstrap" );
-$.fn.modal.Constructor.prototype.enforceFocus = function() {};
 
 $(document).ready(function() {
-	$('#list_client').select2();
-	$('#list_products').select2();
+	$('#list_client').select2({
+		placeholder: "Rechercher un client",
+		allowClear: true
+	});
+	$('#list_products').select2({
+		allowClear: true,
+		placeholder: "Sélectionner des produits",
+	});
+	console.warn($('#livraison'));
+	$('#champs_livraison').hide();
 });
 
+$('#checkboxMemeAdresse').on('change', (e) => {
+	if ($('#champs_livraison').is(":visible")){
+		$('#champs_livraison').hide();
+	} else {
+		$('#champs_livraison').show();
+	}
+});
 
 /*                 CLIENT                       */
 $('#list_client').on('select2:select', function(e) {
@@ -19,7 +33,26 @@ $('#list_client').on('select2:select', function(e) {
 
 
 function addClient(client) {
+	console.warn('client', client);
+	$('#client_id').val(client.id);
+	$('#nom').val(client.nom);
+	$('#prenom').val(client.prenom);
+	$('#email').val(client.email);
+	$('#telephone').val(client.telephone);
+	$('#telephone_secondaire').val(client.telephone_secondaire);
+	$('#adresse').val(client.adresse);
+	$('#code_postal').val(client.code_postal);
+	$('#ville').val(client.ville);
+	$('#pays').val(client.pays);
 
+	$('#livraison_nom').val(client.livraison_nom);
+	$('#livraison_prenom').val(client.livraison_prenom);
+	$('#livraison_adresse').val(client.livraison_adresse);
+	$('#livraison_code_postal').val(client.livraison_code_postal);
+	$('#livraison_ville').val(client.livraison_ville);
+	$('#livraison_pays').val(client.livraison_pays);
+
+	$(`#categorie option[value=${client.categorie}]`).attr('selected','selected');
 }
 
 /*                 PRODUCT                       */
@@ -45,6 +78,16 @@ function setPrice() {
 	$('#TTTC').val(totale);
 	$('#totale_label').text(totale+ ' €')
 }
+
+$('#prix_livraison').on('change', () => {
+	totale += parseFloat($('#prix_livraison').val());
+	setPrice();
+});
+
+$('#remise').on('change', () => {
+	totale -= parseFloat($('#prix_livraison').val());
+	setPrice();
+});
 
 $('#list_products').on('select2:select', function(e) {
 	const data = e.params.data;

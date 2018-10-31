@@ -20,6 +20,7 @@
                                         <th>Livraison</th>
                                         <th>THT</th>
                                         <th>TTTC</th>
+                                        <th>Action</th>
                                     </tr>
                                     @foreach($commands as $command)
                                         <tr>
@@ -31,6 +32,15 @@
                                             <td>{{ $command->livraison }}</td>
                                             <td>{{ $command->THT }} €</td>
                                             <td>{{ $command->TTTC }} €</td>
+                                            <td>
+                                                <a href="{{ route('get.commandes.edition', ['id' => $command->id]) }}" type="button" class="btn btn-primary">Editer</a>
+                                                <form>
+                                                    <a href="{{ route('delete.commandes.suppression', ['id' => $command->id]) }}"
+                                                       data-method="delete" data-token="{{csrf_token()}}" data-confirm="Are you sure?"
+                                                       type="submit" class="btn btn-danger">Supprimer
+                                                    </a>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </table>

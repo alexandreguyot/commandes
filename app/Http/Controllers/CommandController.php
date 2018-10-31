@@ -54,12 +54,15 @@ class CommandController extends Controller
     }
 
     public function print($id) {
-        $commands = Commands::find($id);
-        return view('commands.print')->with('commands', $commands);
+        $command = Commands::find($id);
+        return view('commands.print')->with('commands', $command);
     }
 
     public function delete($id) {
-
+        $command = Commands::find($id);
+        $command->products()->detach();
+        $command->delete();
+        return Redirect::route('homde');
     }
 
     private function createCommand($request, $client_id) {
@@ -76,7 +79,6 @@ class CommandController extends Controller
         $command->remise = $request->get('remise');
         $command->commentaires = $request->get('commentaires');
         $command->save();
-
         foreach ($request->get('products') as $idProduct => $nombre) {
             $command->products()->attach($idProduct, ['nombre' => $nombre['nombre']]);
         }

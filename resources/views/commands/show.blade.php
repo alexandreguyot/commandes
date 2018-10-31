@@ -36,13 +36,14 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="list_client">Recherche un client</label>
-                                        <select id="list_client" name="list_client" class="form-control">
+                                        <select id="list_client" name="list_client" class="js-example-placeholder-single js-states form-control">
+                                            <option></option>
                                             @foreach($clients as $client)
                                                 <option value="{{$client}}" onselect="remplirClient(this.value)">{{ $client->nom }} {{ $client->prenom }} {{ $client->ville }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <input type="hidden" value="null" name="client_id">
+                                    <input type="hidden" value="null" id="client_id" name="client_id">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="nom">Nom</label>
@@ -89,6 +90,10 @@
                                             <label for="adresse">Adresse</label>
                                             <input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse">
                                         </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="code_postal">Code Postal</label>
+                                            <input type="text" class="form-control" id="code_postal" name="code_postal" placeholder="Code Postal">
+                                        </div>
                                         <div class="form-group col-md-6">
                                             <label for="ville">Ville</label>
                                             <input type="text" class="form-control" id="ville" name="ville" placeholder="Ville">
@@ -96,10 +101,6 @@
                                         <div class="form-group col-md-4">
                                             <label for="pays">Pays</label>
                                             <input type="text" class="form-control" id="pays" name="pays" placeholder="Pays">
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                            <label for="code_postal">Code Postal</label>
-                                            <input type="text" class="form-control" id="code_postal" name="code_postal" placeholder="Code Postal">
                                         </div>
                                     </div>
                                 </div>
@@ -143,6 +144,37 @@
                                         <div class="form-group col-md-6">
                                             <label for="remise">Remise</label>
                                             <input type="text" class="form-control" id="remise" name="remise" placeholder="Remise">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="checkbox-inline">
+                                                Même adresse de livraison ? <input type="checkbox" name="meme_adresse" id="checkboxMemeAdresse" value="">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-row" id="champs_livraison">
+                                        <div class="form-group col-md-6">
+                                            <label for="livraison_nom">Nom</label>
+                                            <input type="text" class="form-control" id="livraison_nom" name="livraison_nom" placeholder="Nom">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="livraison_prenom">Prénom</label>
+                                            <input type="text" class="form-control" id="livraison_prenom" name="livraison_prenom" placeholder="Prénom">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="livraison_adresse">Adresse</label>
+                                            <input type="text" class="form-control" id="livraison_adresse" name="livraison_adresse" placeholder="Adresse">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="livraison_code_postal">Code Postal</label>
+                                            <input type="text" class="form-control" id="livraison_code_postal" name="livraison_code_postal" placeholder="Code Postal">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="livraison_ville">Ville</label>
+                                            <input type="text" class="form-control" id="livraison_ville" name="livraison_ville" placeholder="Ville">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="livraison_pays">Pays</label>
+                                            <input type="text" class="form-control" id="livraison_pays" name="livraison_pays" placeholder="Pays">
                                         </div>
                                     </div>
                                 </div>
