@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Biosense - Commandes</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script type="text/javascript" src="{{ URL::asset('js/plugins/jquery-3.3.1.min.js') }}" ></script>
-    <link rel="stylesheet/less" type="text/css" href="{{ URL::asset('less/styles.less') }}" />
+    <link rel="stylesheet/less" type="text/css" href="{{ URL::asset('less/print.less') }}" />
 </head>
 <body>
     <div id="app">
