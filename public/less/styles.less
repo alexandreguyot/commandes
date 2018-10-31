@@ -52,11 +52,10 @@ body {
 		margin: 0 0 50px;
 		.panel-heading,
 		.panel-body {
-			padding: 30px;
-			border-color: #cdcfd4;
+			border-color: white;
 			form {
 				input {
-					padding: 20px 15px;
+					padding: 22px 15px;
 					border-radius: 2px;
 					box-shadow: none;
 				}
@@ -65,9 +64,80 @@ body {
 					box-shadow: none;
 					height: 43px;
 				}
+				> div {
+					float: left; 
+					width: 100%;
+					padding: 40px;
+					&:nth-child(odd) {
+						background-color: #eee;
+					}
+				}
+				button.btn-valid {
+					background-color: #6898e0;
+					color: white;
+					padding: 20px 40px;
+					font-size: 16px;
+					font-weight: 600;
+					text-align: center;
+					width: 300px;
+					margin: auto;
+					display: block;
+				}
+			}
+			table {
+				thead {
+					background-color: #555;
+					color: white;
+					th {
+						padding: 15px;
+						font-weight: 600;
+						font-size: 16px;
+					}
+				}
+				tbody {
+					tr {
+						border-bottom: 1px solid #ccc;
+						td {
+							padding: 15px;
+						}
+					}
+					input {
+						padding: 3px 0;
+						border: 1px solid #bbb;
+						max-width: 50px;
+						text-align: center;
+					}
+					button {
+						margin: -2px 0 0 0;
+					}
+				}
+				tfoot {
+					background-color: white;
+					text-align: right;
+					tr {
+						border-top: 5px solid #ccc;
+						td {
+							padding: 15px;
+							padding: 15px;
+							font-weight: 600;
+							font-size: 16px;
+							&:last-child {
+								text-align: left;
+							}
+						}
+					}
+				}
+				&.products {
+
+				}
+			}
+			div.home-content {
+				padding: 40px;
+				border-top: 1px solid #ddd;
 			}
 		}
 		.panel-heading {
+			padding: 30px 30px 40px;
 			h2 {
 				text-align: center;
 				font-size: 24px;
@@ -80,8 +150,12 @@ body {
 				font-size: 20px;
 				font-weight: 600;
 				color: #6898e0;
+				margin: 10px 0 30px;
 			}
 		}	
+		.panel-body {
+			padding: 0;
+		}
 	}
 	div.printView {
 		.biosenseData {
