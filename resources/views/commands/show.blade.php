@@ -106,7 +106,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="3">Totale</td>
+                                            <td colspan="3">Total TTC</td>
                                             <td id="totale"></td>
                                         </tr>
                                     </tfoot>
