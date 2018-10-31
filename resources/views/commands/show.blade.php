@@ -10,7 +10,7 @@
                         <div class="panel-heading"><h2>Création d'une nouvelle commande</h2></div>
 
                         <div class="panel-body">
-                            <form>
+                            <form action="{{route('post.commandes.creation')}}"  method="post" >
                                 <div class="form-group col-md-12">
                                     <div class="panel-title"><h4>Client</h4></div>
                                 </div>
@@ -79,6 +79,41 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-12">
+                                    <div class="panel-title"><h4>Livraison</h4></div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="livraison">Livraison</label>
+                                        <select id="livraison" name="livraison" class="form-control">
+                                            @foreach($livraison as $livraison)
+                                                <option value="{{$livraison}}">{{$livraison}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="prix_livraison">Prix Livraison</label>
+                                        <input type="text" class="form-control" id="prix_livraison" name="prix_livraison" placeholder="Prix Livraison">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="type_paiement">Type de paiement</label>
+                                        <select id="type_paiement" name="type_paiement" class="form-control">
+                                            @foreach($type_paiement as $type_paiement)
+                                                <option value="{{$type_paiement}}">{{$type_paiement}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="statut">Statut</label>
+                                        <select id="statut" name="statut" class="form-control">
+                                            @foreach($statut as $statut)
+                                                <option value="{{$statut}}">{{$statut}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
                                     <div class="panel-title"><h4>Produits</h4></div>
                                 </div>
                                 <div class="form-group col-md-12">
@@ -92,25 +127,29 @@
                                 <div class="form-group col-md-12">
                                     <div class="panel-title"><h4>Liste des produits dans la commande</h4></div>
                                 </div>
-                                <table id="products" class="table table-bordered products">
-                                    <thead>
-                                    <tr id="products_header">
-                                        <th>Reférence</th>
-                                        <th>Nom</th>
-                                        <th>Prix</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="3">Totale</td>
-                                            <td id="totale"></td>
+                                <div class="col-md-12">
+                                    <table id="products" class="table table-bordered products">
+                                        <thead>
+                                        <tr id="products_header">
+                                            <th>Reférence</th>
+                                            <th>Nom</th>
+                                            <th>Prix</th>
+                                            <th>Quantité</th>
+                                            <th>Action</th>
                                         </tr>
-                                    </tfoot>
-                                </table>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4">Totale</td>
+                                                <td id="totale"></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <button type="submit" class="btn btn-default">Enregister cette commande</button>
                             </form>
                         </div>
                     </div>

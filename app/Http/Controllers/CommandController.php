@@ -34,8 +34,8 @@ class CommandController extends Controller
     }
 
 
-    public function create() {
-
+    public function create(Request $request) {
+        dd($request);
     }
 
     public function list() {
