@@ -34,11 +34,12 @@
                                             <td>{{ $command->TTTC }} €</td>
                                             <td>
                                                 <a href="{{ route('get.commandes.edition', ['id' => $command->id]) }}" type="button" class="btn btn-primary">Editer</a>
-                                                <form>
-                                                    <a href="{{ route('delete.commandes.suppression', ['id' => $command->id]) }}"
-                                                       data-method="delete" data-token="{{csrf_token()}}" data-confirm="Are you sure?"
-                                                       type="submit" class="btn btn-danger">Supprimer
-                                                    </a>
+                                                <form action="{{ route('delete.commandes.suppression', ['id' => $command->id]) }}" method="post">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                                                    </div>
                                                 </form>
                                             </td>
                                         </tr>

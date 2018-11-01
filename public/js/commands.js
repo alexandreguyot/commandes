@@ -12,7 +12,6 @@ $(document).ready(function() {
 		allowClear: true,
 		placeholder: "Sélectionner des produits",
 	});
-	console.warn($('#livraison'));
 	$('#champs_livraison').hide();
 });
 
@@ -33,7 +32,6 @@ $('#list_client').on('select2:select', function(e) {
 
 
 function addClient(client) {
-	console.warn('client', client);
 	$('#client_id').val(client.id);
 	$('#nom').val(client.nom);
 	$('#prenom').val(client.prenom);
@@ -117,7 +115,7 @@ function removeProduct (id, ref, nom, prix) {
 
 function deleteNumberProduct(id, prix) {
 	const nombre = $(`#product_${id}_numb`);
-	if (parseInt(nombre.val()) < 0) {
+	if (parseInt(nombre.val()) > 0) {
 		nombre.val(parseInt(nombre.val()) - 1);
 		removeTotalePrice(prix);
 	}

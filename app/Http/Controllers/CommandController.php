@@ -29,9 +29,26 @@ class CommandController extends Controller
         ]);
     }
 
-    public function edit_show(Request $request) {
-        $command = Commands::find($request->id);
-        return view('commands.show')->with('command', $command);
+    public function edit_show($id) {
+        $type = Commands::getPossibleEnumValues('type');
+        $type_paiement = Commands::getPossibleEnumValues('type_paiement');
+        $statut = Commands::getPossibleEnumValues('statut');
+        $livraison = Commands::getPossibleEnumValues('livraison');
+        $categorie = Client::getPossibleEnumValues('categorie');
+        $products = Products::all();
+        $clients = Client::all();
+        $command =  Commands::with(['products', 'client'])->find(['id' =>$id])->first();
+        dd($command->products);
+        return view('commands.edit')->with([
+            'products' => $products,
+            'type' => $type,
+            'type_paiement' => $type_paiement,
+            'statut' => $statut,
+            'livraison' => $livraison,
+            'categorie' => $categorie,
+            'clients' => $clients,
+            'command' => $command,
+        ]);
     }
 
 
@@ -43,10 +60,6 @@ class CommandController extends Controller
         $client_id = $client_id == "null" ? $client->id : $client_id;
         $this->createCommand($request, $client_id);
         return Redirect::route('home');
-    }
-
-    public function list() {
-
     }
 
     public function edit($id) {
@@ -62,7 +75,7 @@ class CommandController extends Controller
         $command = Commands::find($id);
         $command->products()->detach();
         $command->delete();
-        return Redirect::route('homde');
+        return Redirect::route('home');
     }
 
     private function createCommand($request, $client_id) {
