@@ -10,7 +10,9 @@
 
                         <div class="panel-body">
                             <div class="home-content">
-                                <table class="table table-bordered">
+                                <input type="text" class="form-control" id="filtre" onkeyup="filterTableau()" placeholder="Rechercher une commande">
+                                <br>
+                                <table class="table table-bordered" id="liste_commandes">
                                     <tr>
                                         <th>Numéro</th>
                                         <th>Date</th>
