@@ -36,7 +36,7 @@
                                                 <form action="{{ route('delete.commandes.suppression', ['id' => $command->id]) }}" method="post">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
-                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Etes-vous sur de vouloir supprimer cette commande ?')"><i class="fas fa-trash-alt"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
