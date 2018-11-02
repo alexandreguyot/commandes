@@ -24,13 +24,13 @@
                                     @foreach($commands as $command)
                                         <tr>
                                             <td>{{ $command->id }}</td>
-                                            <td>{{ $command->date }}</td>
-                                            <td>??</td>
+                                            <td>{{ date_create($command->date)->format('d/m/Y') }}</td>
+                                            <td>{{ $command->client->nom }} {{ $command->client->prenom }}</td>
                                             <td>{{ $command->type }}</td>
                                             <td>{{ $command->statut }}</td>
                                             <td>{{ $command->livraison }}</td>
                                             <td>{{ $command->TTTC }} €</td>
-                                            <td>
+                                            <td class="d-inline-block">
                                                 <a href="{{ route('get.commandes.edition', ['id' => $command->id]) }}" type="button" class="btn btn-primary"><i class="fas fa-pen"></i></a>
                                                 <a href="{{ route('get.commandes.impression', ['id' => $command->id]) }}" type="button" class="btn btn-warning"><i class="fas fa-print"></i></a>
                                                 <form action="{{ route('delete.commandes.suppression', ['id' => $command->id]) }}" method="post">

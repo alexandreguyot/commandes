@@ -72,8 +72,8 @@ class CommandController extends Controller
     }
 
     public function print($id) {
-        $command = Commands::find($id);
-        return view('commands.print')->with('commands', $command);
+        $command = Commands::with(['products', 'client'])->find(['id' =>$id])->first();
+        return view('commands.print')->with('command', $command);
     }
 
     public function delete($id) {

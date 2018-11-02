@@ -21,28 +21,28 @@
             </div>
 
             <div id="factureBlocClient">
-                <strong>ROSE MARIE PARDO</strong><br /><br />
-                27 RUE PIERRE DUPONT<br />
-                92150 SURESNES<br />
-                FRANCE<br />
+                <strong>{{ strtoupper($command->client->nom) }} {{ strtoupper($command->client->prenom) }} </strong><br /><br />
+                {{ $command->client->adresse }}<br />
+                {{ $command->client->code_postal }} {{ $command->client->ville }}<br />
+                {{ $command->client->pays }}<br />
             </div>
             <div id="factureType">
-                <h2>DEVIS</h2>
+                <h2>{{ strtoupper($command->client->type) }}</h2>
             </div>
             <div id="factureTableau">
                 <table class="factureCadreFacture">
                     <tr>
                         <td>
-                            <h3>Numéro</h3>
-                            
+                            <h3>Référence</h3>
+                            {{ $command->id }}
                         </td>
                         <td>
                             <h3>Date</h3>
-                            30/10/2018
+                            {{ $command->date }}
                         </td>
                         <td>
                             <h3>Mode de Règlement</h3>
-                            Indéterminé
+                            {{ $command->type_paiement }}
                         </td>
                     </tr>
                 </table>
@@ -55,30 +55,24 @@
                         <th>Montant TTC</th>
                         <th>TVA</th>
                     </tr>
-                        <tr>
-                        <td>BIOMATSUM140x200</td>
-                        <td>Matelas Biosense Summum Nature 140x200</td>
-                        <td>1</td>
-                        <td class="facturePrix">1799.00 &euro;</td>
-                        <td class="facturePrix">1799.00 &euro;</td>
+                    @foreach($command->products as $key => $product)
+                    <tr>
+                        <td>{{ $product->ref }}</td>
+                        <td>{{ $product->nom }}</td>
+                        <td>{{ $product->pivot->nombre }}</td>
+                        <td class="facturePrix">{{ number_format(floatval($product->prix),2, ',', ' ') }} &euro;</td>
+                        <td class="facturePrix">{{ number_format(floatval($product->prix * $product->pivot->nombre), 2, ',', ' ') }} &euro;</td>
                         <td class="factureTVA">1</td>
                     </tr>
-                        <tr>
-                        <td>BIOSOMSUM140x200</td>
-                        <td>Sommier Lattes souples Biosense Summum Nature 140x200</td>
-                        <td>1</td>
-                        <td class="facturePrix">621.00 &euro;</td>
-                        <td class="facturePrix">621.00 &euro;</td>
-                        <td class="factureTVA">1</td>
-                    </tr>
+                    @endforeach
                     <tr>
                         <td>&nbsp;</td>
                         <td>
-                            Port : livraison initiale.
+                            Port : {{ $command->livraison }}
                         </td>
                         <td>1</td>
-                        <td class="facturePrix">0.00 &euro;</td>
-                        <td class="facturePrix">0.00 &euro;</td>
+                        <td class="facturePrix">{{  number_format(floatval($command->prix_livraison), 2, ',', ' ') }} &euro;</td>
+                        <td class="facturePrix">{{ number_format(floatval($command->prix_livraison), 2, ',', ' ') }} &euro;</td>
                         <td class="factureTVA">1</td>
                     </tr>
                 </table>
@@ -102,15 +96,15 @@
                     <table>
                                             <tr>
                             <td><strong>Total TTC</strong></td>
-                            <td class="facturePrix"><strong>2420.00 &euro;</strong></td>
+                            <td class="facturePrix"><strong>{{ number_format(floatval($command->TTTC), 2, ',', ' ') }} &euro;</strong></td>
                         </tr>
                         <tr>
                             <td>Total TVA</td>
-                            <td class="facturePrix">403.33 &euro;</td>
+                            <td class="facturePrix">{{ number_format(floatval($command->TTTC - $command->THT), 2, ',', ' ') }} &euro;</td>
                         </tr>
                         <tr>
                             <td>Total HT</td>
-                            <td class="facturePrix">2016.67 &euro;</td>
+                            <td class="facturePrix">{{ number_format(floatval($command->THT), 2, ',', ' ') }} &euro;</td>
                         </tr>
                     
                         <tr>
@@ -119,7 +113,7 @@
                         </tr>
                         <tr id="montantAPayer">
                             <td><strong>Montant à payer</strong></td>
-                            <td class="facturePrix"><strong>2420.00 &euro;</strong></td>
+                            <td class="facturePrix"><strong>{{ number_format(floatval($command->TTTC), 2, ',', ' ') }} &euro;</strong></td>
                         </tr>
                     </table>
 
