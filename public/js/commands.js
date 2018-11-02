@@ -2,6 +2,7 @@
 
 $.fn.select2.defaults.set('language', 'fr');
 $.fn.select2.defaults.set( "theme", "bootstrap" );
+let totale = 0;
 
 $(document).ready(function() {
 	$('#list_client').select2({
@@ -13,6 +14,7 @@ $(document).ready(function() {
 		placeholder: "Sélectionner des produits",
 	});
 	$('#champs_livraison').hide();
+	totale = parseFloat($('#TTTC').val());
 });
 
 $('#checkboxMemeAdresse').on('change', (e) => {
@@ -55,7 +57,6 @@ function addClient(client) {
 
 /*                 PRODUCT                       */
 
-let totale = 0;
 
 function addTotalePrice(prix) {
 	totale += prix;
@@ -63,6 +64,8 @@ function addTotalePrice(prix) {
 }
 
 function removeTotalePrice(prix, nb) {
+	console.warn('prix', prix);
+	console.warn('nb', nb);
 	if (nb > 1 ) {
 		prix = nb * prix;
 	}
@@ -128,7 +131,6 @@ function removeInSelectProduct(ref, nom, prix) {
 
 function removeProduct (id, ref, nom, prix) {
 	$('#product_id_'+id).remove();
-	removeTotalePrice(prix);
 	removeInSelectProduct(ref, nom, prix);
 }
 

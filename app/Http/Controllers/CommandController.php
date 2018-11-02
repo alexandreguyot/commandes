@@ -38,7 +38,7 @@ class CommandController extends Controller
         $products = Products::all();
         $clients = Client::all();
         $command =  Commands::with(['products', 'client'])->find(['id' =>$id])->first();
-        dd($command->products);
+        $commandproduct = $command->products->pluck('id')->toArray();
         return view('commands.edit')->with([
             'products' => $products,
             'type' => $type,
@@ -48,6 +48,7 @@ class CommandController extends Controller
             'categorie' => $categorie,
             'clients' => $clients,
             'command' => $command,
+            'commandproduct' => $commandproduct,
         ]);
     }
 
@@ -62,8 +63,13 @@ class CommandController extends Controller
         return Redirect::route('home');
     }
 
-    public function edit($id) {
-
+    public function edit(Request $request) {
+        dd('test');
+        $client = Client::where(['id' => $request->get('client_id')])->first();
+        $client = $this->editClient($request, $client);
+        $command = Commands::where(['id' => $request->get('command_id')])->first();
+        $this->editCommand($request, $command, $client);
+        return Redirect::route('home');
     }
 
     public function print($id) {
@@ -116,5 +122,42 @@ class CommandController extends Controller
         $client->livraison_ville = $request->get('livraison_ville');
         $client->save();
         return $client;
+    }
+
+    private function editClient($request, $client) {
+        $client->categorie = $request->get('categorie');
+        $client->nom = $request->get('nom');
+        $client->prenom = $request->get('prenom');
+        $client->adresse = $request->get('adresse');
+        $client->code_postal = $request->get('code_postal');
+        $client->ville = $request->get('ville');
+        $client->pays = $request->get('pays');
+        $client->telephone = $request->get('telephone');
+        $client->telephone_secondaire = $request->get('telephone_secondaire');
+        $client->email = $request->get('email');
+        $client->livraison_nom = $request->get('livraison_nom');
+        $client->livraison_prenom = $request->get('livraison_prenom');
+        $client->livraison_adresse = $request->get('livraison_adresse');
+        $client->livraison_code_postal = $request->get('livraison_code_postal');
+        $client->livraison_ville = $request->get('livraison_ville');
+        $client->save();
+    }
+
+    private function editCommand($request, $command, $client) {
+        $command->client_id = $client->id;
+        $command->date = $request->get('date');
+        $command->type = $request->get('type');
+        $command->type_paiement = $request->get('type_paiement');
+        $command->statut = $request->get('statut');
+        $command->livraison = $request->get('livraison');
+        $command->prix_livraison = $request->get('prix_livraison');
+        $command->THT = intval($request->get('TTTC')) / 1.2;
+        $command->TTTC = $request->get('TTTC');
+        $command->remise = $request->get('remise');
+        $command->commentaires = $request->get('commentaires');
+        $command->save();
+        foreach ($request->get('products') as $idProduct => $nombre) {
+            $command->products()->sync($idProduct, ['nombre' => $nombre['nombre']]);
+        }
     }
 }

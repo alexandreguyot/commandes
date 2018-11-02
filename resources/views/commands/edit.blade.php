@@ -10,8 +10,10 @@
                         <div class="panel-heading"><h2>Création d'une nouvelle commande</h2></div>
 
                         <div class="panel-body">
-                            <form action="{{route('post.commandes.creation')}}"  method="put" >
+                            <form action="{{route('put.commandes.edition', ['id' => $command->id ])}}">
                                 {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+                                <input type="hidden" value="null" id="command_id" value="{{ $command->id }}" name="command_id">
                                 <div class="part">
                                     <div class="form-group col-md-12">
                                         <div class="panel-title"><h4>Informations</h4></div>
@@ -34,15 +36,15 @@
                                     <div class="form-group col-md-12">
                                         <div class="panel-title"><h4>1 / Client</h4></div>
                                     </div>
-                                    <div class="form-group col-md-12">
-                                        <label for="list_client">Recherche un client</label>
-                                        <select id="list_client" name="list_client" class="js-example-placeholder-single js-states form-control">
-                                            <option></option>
-                                            @foreach($clients as $client)
-                                                <option value="{{$client}}" onselect="remplirClient(this.value)">{{ $client->nom }} {{ $client->prenom }} {{ $client->ville }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    {{--<div class="form-group col-md-12">--}}
+                                        {{--<label for="list_client">Recherche un client</label>--}}
+                                        {{--<select id="list_client" name="list_client" class="js-example-placeholder-single js-states form-control">--}}
+                                            {{--<option></option>--}}
+                                            {{--@foreach($clients as $client)--}}
+                                                {{--<option value="{{$client}}" onselect="remplirClient(this.value)">{{ $client->nom }} {{ $client->prenom }} {{ $client->ville }}</option>--}}
+                                            {{--@endforeach--}}
+                                        {{--</select>--}}
+                                    {{--</div>--}}
                                     <input type="hidden" value="null" id="client_id" value="{{$command->client->client_id}}" name="client_id">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
@@ -121,7 +123,8 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="prix_livraison">Prix Livraison</label>
-                                            <input type="text" class="form-control" id="prix_livraison" value="{{ $command->prix_livraison }}" name="prix_livraison" placeholder="Prix Livraison">
+                                            <input type="text" class="form-control" id="prix_livraison" value="{{ $command->prix_livraison }}" onchange="setPrixLivraison()"  name="prix_livraison" placeholder="Prix Livraison">
+                                            <input type="hidden" class="form-control" id="ancien_prix_livraison">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="type_paiement">Type de paiement</label>
@@ -143,11 +146,12 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="remise">Remise</label>
-                                            <input type="text" class="form-control" id="remise" value="{{ $command->remise }}" name="remise" placeholder="Remise">
+                                            <input type="text" class="form-control" id="remise" value="{{ $command->remise }}" onchange="setRemise()" name="remise" placeholder="Remise">
+                                            <input type="hidden" class="form-control" id="ancienne_remise">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="checkbox-inline">
-                                                Adresse différente de livraison ? <input type="checkbox" checked="{{ $command->client->livraison_nom ? 'checked' : '' }}" name="meme_adresse" id="checkboxMemeAdresse" value="">
+                                                Adresse différente de livraison ? <input type="checkbox" {{ $command->client->livraison_nom ? 'checked' : '' }} name="meme_adresse" id="checkboxMemeAdresse" value="">
                                             </label>
                                         </div>
                                     </div>
@@ -189,7 +193,8 @@
                                             <label for="list_products">Liste des produits</label>
                                             <select id="list_products" name="list_products[]" multiple="multiple" class="form-control">
                                                 @foreach($products as $key => $product)
-                                                    <option value="{{ $product }}" onclick="remplirProduit()">{{ $product->ref }} - {{ $product->nom }} - {{ $product->prix }}€</option>
+                                                    <option value="{{ $product }}" {{ in_array($product->id, $commandproduct) ? 'selected': '' }}
+                                                            onclick="remplirProduit()">{{ $product->id }} - {{ $product->nom }} - {{ $product->prix }}€</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -221,9 +226,9 @@
                                                             {{ $product->prix }} €
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="btn btn-default btn-sm" onclick="deleteNumberProduct( {{ $product->id }}, {{ $product->prix }})">-</button>
-                                                            <input id="product_{{ $product->id }}_numb" name="products[{{ $product->id }}][nombre]" value="">
-                                                            <button type="button" class="btn btn-default btn-sm" onclick="addNumberProduct( {{ $product->id }}, {{ $product->prix }})">+</button>
+                                                            <button type="button" class="btn btn-default btn-sm" onclick="deleteNumberProduct({{ $product->id }}, {{ $product->prix }})">-</button>
+                                                            <input id="product_{{ $product->id }}_numb" name="products[{{ $product->id }}][nombre]" value="{{ $product->pivot->nombre }}">
+                                                            <button type="button" class="btn btn-default btn-sm" onclick="addNumberProduct({{ $product->id }}, {{ $product->prix }})">+</button>
                                                         </td>
                                                         <td>
                                                             <button type="button" class="btn btn-default btn-sm" onclick="removeProduct( {{ $product->id }}, {{ $product->ref }}, {{ $product->nom }}, {{ $product->prix }});">
@@ -239,7 +244,7 @@
                                                 <td colspan="4">Total TTC</td>
                                                 <td>
                                                     <input type="hidden" id="TTTC" name="TTTC" value="{{ $command->TTTC }}">
-                                                    <label id="totale_label"></label>
+                                                    <label id="totale_label">{{ $command->TTTC }} €</label>
                                                 </td>
                                             </tr>
                                             </tfoot>
