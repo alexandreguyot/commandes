@@ -178,7 +178,7 @@
                                             <select id="list_products" name="list_products[]" multiple="multiple" class="form-control">
                                                 @foreach($products as $key => $product)
                                                     <option value="{{ $product }}" {{ in_array($product->id, $commandproduct) ? 'selected': '' }}
-                                                            onclick="remplirProduit()">{{ $product->id }} - {{ $product->nom }} - {{ $product->prix }}€</option>
+                                                            onclick="remplirProduit()">{{ $product->ref }} - {{ $product->nom }} - {{ $product->prix }}€</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -215,7 +215,7 @@
                                                             <button type="button" class="btn btn-default btn-sm" onclick="addNumberProduct({{ $product->id }}, {{ $product->prix }})">+</button>
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="btn btn-default btn-sm" onclick="removeProduct( {{ $product->id }}, {{ $product->ref }}, {{ $product->nom }}, {{ $product->prix }});">
+                                                            <button type="button" class="btn btn-default btn-sm" onclick="removeProduct( {{$product->id}}, '{{ $product->ref }}','{{ $product->nom }}', {{ $product->prix }});">
                                                                 Supprimer
                                                             </button>
                                                         </td>

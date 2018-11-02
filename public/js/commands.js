@@ -64,15 +64,10 @@ function addTotalePrice(prix) {
 }
 
 function removeTotalePrice(prix, nb) {
-	console.warn('prix', prix);
-	console.warn('nb', nb);
 	if (nb > 1 ) {
 		prix = nb * prix;
 	}
 	totale -= prix;
-	if (totale < 0 ) {
-		totale = 0;
-	}
 	setPrice();
 }
 function setPrice() {
