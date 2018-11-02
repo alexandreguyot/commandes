@@ -10,7 +10,9 @@
 
                         <div class="panel-body">
                             <div class="home-content">
-                                <table class="table table-bordered">
+                                <input type="text" class="form-control" id="filtre" onkeyup="filterTableau()" placeholder="Rechercher une commande">
+                                <br>
+                                <table class="table table-bordered" id="liste_commandes">
                                     <tr>
                                         <th>Numéro</th>
                                         <th>Date</th>
@@ -36,7 +38,7 @@
                                                 <form action="{{ route('delete.commandes.suppression', ['id' => $command->id]) }}" method="post">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
-                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Etes-vous sur de vouloir supprimer cette commande ?')"><i class="fas fa-trash-alt"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -21,11 +21,11 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="date">Date</label>
-                                        <input type="date" class="form-control" id="date" value="{{ $command->date }}" name="date" placeholder="Date">
+                                        <input type="date" class="form-control" id="date" value="{{ $command->date }}" name="date" placeholder="Date" required>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="type">Type</label>
-                                        <select id="type" name="type" class="form-control">
+                                        <select id="type" name="type" class="form-control" required>
                                             @foreach($type as $type)
                                                 <option value="{{$type}}" {{$command->type === $type ? 'selected' : ''}}>{{$type}}</option>
                                             @endforeach
@@ -49,21 +49,21 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="nom">Nom</label>
-                                            <input type="text" class="form-control" id="nom" value="{{$command->client->nom}}" name="nom" placeholder="Nom">
+                                            <input type="text" class="form-control" id="nom" value="{{$command->client->nom}}" name="nom" placeholder="Nom" required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="prenom">Prénom</label>
-                                            <input type="text" class="form-control" id="prenom" value="{{$command->client->prenom}}" name="prenom" placeholder="Prénom">
+                                            <input type="text" class="form-control" id="prenom" value="{{$command->client->prenom}}" name="prenom" placeholder="Prénom" required>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="email">E-mail</label>
-                                            <input type="text" class="form-control" id="email" value="{{$command->client->email}}" name="email" placeholder="E-mail">
+                                            <input type="text" class="form-control" id="email" value="{{$command->client->email}}" name="email" placeholder="E-mail" required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="email">Téléphone</label>
-                                            <input type="text" class="form-control" id="telephone" value="{{$command->client->telephone}}" name="telephone" placeholder="Téléphone">
+                                            <input type="text" class="form-control" id="telephone" value="{{$command->client->telephone}}" name="telephone" placeholder="Téléphone" required>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="categorie">Catégorie</label>
-                                            <select id="categorie" name="categorie" class="form-control">
+                                            <select id="categorie" name="categorie" class="form-control" required>
                                                 @foreach($categorie as $categorie)
                                                     <option value="{{$categorie}}" {{$command->$categorie === $categorie ? 'selected' : ''}}>{{$categorie}}</option>
                                                 @endforeach
@@ -90,19 +90,19 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label for="adresse">Adresse</label>
-                                            <input type="text" class="form-control" id="adresse" value="{{ $command->client->adresse }}" name="adresse" placeholder="Adresse">
+                                            <input type="text" class="form-control" id="adresse" value="{{ $command->client->adresse }}" name="adresse" placeholder="Adresse" required>
                                         </div>
                                         <div class="form-group col-md-2">
                                             <label for="code_postal">Code Postal</label>
-                                            <input type="text" class="form-control" id="code_postal" value="{{ $command->client->code_postal }}" name="code_postal" placeholder="Code Postal">
+                                            <input type="text" class="form-control" id="code_postal" value="{{ $command->client->code_postal }}" name="code_postal" placeholder="Code Postal" required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="ville">Ville</label>
-                                            <input type="text" class="form-control" id="ville" value="{{ $command->client->ville }}" name="ville" placeholder="Ville">
+                                            <input type="text" class="form-control" id="ville" value="{{ $command->client->ville }}" name="ville" placeholder="Ville" required>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="pays">Pays</label>
-                                            <input type="text" class="form-control" id="pays" value="{{ $command->client->pays }}" name="pays" placeholder="Pays">
+                                            <input type="text" class="form-control" id="pays" value="{{ $command->client->pays }}" name="pays" placeholder="Pays" required>
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="livraison">Livraison</label>
-                                            <select id="livraison" name="livraison" class="form-control">
+                                            <select id="livraison" name="livraison" class="form-control" required>
                                                 @foreach($livraison as $livraison)
                                                     <option value="{{$livraison}}" {{$command->livraison === $livraison ? 'selected' : ''}}>{{$livraison}}</option>
                                                 @endforeach
@@ -123,12 +123,12 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="prix_livraison">Prix Livraison</label>
-                                            <input type="number" step="0.01" min="0" class="form-control" id="prix_livraison" value="{{ $command->prix_livraison }}" onchange="setPrixLivraison()"  name="prix_livraison" placeholder="Prix Livraison">
+                                            <input type="number" step="0.01" min="0" class="form-control" id="prix_livraison" value="{{ $command->prix_livraison }}" onchange="setPrixLivraison()"  name="prix_livraison" placeholder="Prix Livraison" required>
                                             <input type="hidden" class="form-control" id="ancien_prix_livraison" value="{{ $command->prix_livraison }}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="type_paiement">Type de paiement</label>
-                                            <select id="type_paiement" name="type_paiement" class="form-control">
+                                            <select id="type_paiement" name="type_paiement" class="form-control" required>
                                                 @foreach($type_paiement as $type_paiement)
                                                     <option value="{{$type_paiement}}" {{$command->type_paiement === $type_paiement ? 'selected' : ''}}>{{ $type_paiement }}</option>
                                                 @endforeach
@@ -136,7 +136,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="statut">Statut</label>
-                                            <select id="statut" name="statut" class="form-control">
+                                            <select id="statut" name="statut" class="form-control" required>
                                                 @foreach($statut as $statut)
                                                     <option value="{{$statut}}" {{$command->statut === $statut ? 'selected' : ''}}>{{$statut}}</option>
                                                 @endforeach
