@@ -77,15 +77,34 @@ function setPrice() {
 	$('#totale_label').text(totale+ ' €')
 }
 
-$('#prix_livraison').on('change', () => {
-	totale += parseFloat($('#prix_livraison').val());
+function setPrixLivraison() {
+	const ancien_prix = $('#ancien_prix_livraison').val() ? parseFloat($('#ancien_prix_livraison').val()) : 0;
+	const prix = parseFloat($('#prix_livraison').val());
+	if (ancien_prix > prix) {
+		totale -= (ancien_prix - prix);
+	}
+	if (ancien_prix < prix) {
+		totale -= ancien_prix;
+		totale += prix;
+	}
+	$('#ancien_prix_livraison').val(prix);
 	setPrice();
-});
+}
 
-$('#remise').on('change', () => {
-	totale -= parseFloat($('#prix_livraison').val());
+function setRemise() {
+	const ancien_prix = $('#ancienne_remise').val() ? parseFloat($('#ancienne_remise').val()) : 0;
+	const prix = parseFloat($('#remise').val());
+	if (ancien_prix > prix) {
+		totale += ancien_prix;
+		totale -= prix;
+	}
+	if (ancien_prix < prix) {
+		totale += ancien_prix;
+		totale -= prix;
+	}
+	$('#ancienne_remise').val(prix);
 	setPrice();
-});
+}
 
 $('#list_products').on('select2:select', function(e) {
 	const data = e.params.data;

@@ -121,7 +121,8 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="prix_livraison">Prix Livraison</label>
-                                            <input type="text" class="form-control" id="prix_livraison" name="prix_livraison" placeholder="Prix Livraison">
+                                            <input type="number" step="0.01" min="0" class="form-control" id="prix_livraison" onchange="setPrixLivraison()" name="prix_livraison" placeholder="Prix Livraison">
+                                            <input type="hidden" class="form-control" id="ancien_prix_livraison">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="type_paiement">Type de paiement</label>
@@ -143,7 +144,8 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="remise">Remise</label>
-                                            <input type="text" class="form-control" id="remise" name="remise" placeholder="Remise">
+                                            <input type="number" step="0.01" min="0" class="form-control" id="remise" onchange="setRemise()" name="remise" placeholder="Remise">
+                                            <input type="hidden" class="form-control" id="ancienne_remise">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="checkbox-inline">
