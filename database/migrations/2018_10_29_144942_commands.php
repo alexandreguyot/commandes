@@ -20,7 +20,7 @@ class Commands extends Migration
             $table->enum('type', ['Devis', 'Commande'])->nullable();
             $table->enum('type_paiement', ['Chèque', 'Carte Bancaire', 'Virement'])->nullable();
             $table->enum('statut', ['Attente de Paiement', 'Paiement Accepté', 'Commande terminée', 'Problème de paiement', 'Mise en quarantaine'])->nullable();
-            $table->enum('livraison', ['Livraison Colissimo', 'Livraison 1 personne', 'Livraison 2 personnes'])->nullable();
+            $table->enum('livraison', ['Livraison offerte', 'Livraison Colissimo', 'Livraison 1 personne', 'Livraison 2 personnes'])->nullable();
             $table->float('prix_livraison')->nullable();
             $table->float('THT')->nullable();
             $table->float('TTTC')->nullable();
@@ -29,7 +29,6 @@ class Commands extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
