@@ -259,7 +259,7 @@
                                 </div>
                                 <div class="part">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-default btn-valid">Enregister cette commande</button>
+                                        <button type="submit" class="btn btn-default btn-valid">Editer cette commande</button>
                                     </div>
                                 </div>
                             </form>
