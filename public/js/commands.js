@@ -134,8 +134,12 @@ $('#list_products').on('select2:unselect', function(e) {
 	const data = e.params.data;
 	const product = JSON.parse(data.id);
 	const nombre = $(`#product_${product.id}_numb`).val();
+	console.warn(`#product_${product.id}_numb`);
+	console.warn('nombre', nombre);
+	console.warn('product.prix', product.prix);
+	removeTotalePrice(product.prix, nombre);
+	setPrice();
 	$('#product_id_'+product.id).remove();
-	removeTotalePrice(product.prix, parseInt(nombre));
 });
 
 
@@ -145,7 +149,6 @@ function removeInSelectProduct(ref, nom, prix) {
 }
 
 function removeProduct (id, ref, nom, prix) {
-	$('#product_id_'+id).remove();
 	removeInSelectProduct(ref, nom, prix);
 }
 
