@@ -246,5 +246,38 @@ class ProductsTableSeeder extends Seeder
         DB::table('products')->insert(['id' => '232', 'ref' => 'BIOSURLATGRE90x200', 'nom' => 'Surmatelas Fontevraud Latex Bio - 90x200', 'prix' => '274.00']);
         DB::table('products')->insert(['id' => '233', 'ref' => 'BIOSURLATGRE180', 'nom' => 'Surmatelas Fontevraud Latex Bio - 180x200', 'prix' => '557.00']);
         DB::table('products')->insert(['id' => '234', 'ref' => 'BIOSURLATGRE90', 'nom' => 'Surmatelas Fontevraud Latex Bio - 90x190', 'prix' => '313.90']);
+        DB::table('products')->insert(['id' => '235', 'ref' => 'COTPROMAT90x200', 'nom' => 'Protège-matelas Cotonea 450g/m² - 90x200', 'prix' => '51.00']);
+        DB::table('products')->insert(['id' => '236', 'ref' => 'COTPROMAT100', 'nom' => 'Protège-matelas Cotonea 450g/m² - 100x200', 'prix' => '54.00']);
+        DB::table('products')->insert(['id' => '237', 'ref' => 'COTPROMAT90', 'nom' => 'Protège-matelas Cotonea 450g/m² - 90x190', 'prix' => '49.00']);
+        DB::table('products')->insert(['id' => '238', 'ref' => 'COTPROMAT120', 'nom' => 'Protège-matelas Cotonea 450g/m² - 120x200', 'prix' => '60.00']);
+        DB::table('products')->insert(['id' => '239', 'ref' => 'COTPROMAT60', 'nom' => 'Protège-matelas Cotonea 450g/m² - 60x120', 'prix' => '26.00']);
+        DB::table('products')->insert(['id' => '240', 'ref' => 'COTPROMAT70', 'nom' => 'Protège-matelas Cotonea 450g/m² - 70x140', 'prix' => '33.00']);
+        DB::table('products')->insert(['id' => '241', 'ref' => 'COTPROMAT80', 'nom' => 'Protège-matelas Cotonea 450g/m² - 80x200', 'prix' => '45.00']);
+        DB::table('products')->insert(['id' => '242', 'ref' => 'COTPROMAT140x200', 'nom' => 'Protège-matelas Cotonea 450g/m² - 140x200', 'prix' => '70.00']);
+        DB::table('products')->insert(['id' => '243', 'ref' => 'COTPROMAT160', 'nom' => 'Protège-matelas Cotonea 450g/m² - 160x200', 'prix' => '76.00']);
+        DB::table('products')->insert(['id' => '244', 'ref' => 'COTPROMAT180', 'nom' => 'Protège-matelas Cotonea 450g/m² - 180x200', 'prix' => '86.00']);
+        DB::table('products')->insert(['id' => '245', 'ref' => 'COTPROMAT200', 'nom' => 'Protège-matelas Cotonea 450g/m² - 200x200', 'prix' => '95.00']);
+        DB::table('products')->insert(['id' => '246', 'ref' => 'COTPROMAT140', 'nom' => 'Protège-matelas Cotonea 450g/m² - 140x190', 'prix' => '69.00']);
+        DB::table('products')->insert(['id' => '247', 'ref' => 'COTPROMAT90x200_PVC', 'nom' => 'Protège-matelas Cotonea + PVC - 90x200', 'prix' => '86.00']);
+        DB::table('products')->insert(['id' => '248', 'ref' => 'COTPROMAT90_PVC', 'nom' => 'Protège-matelas Cotonea + PVC - 90x190', 'prix' => '83.00']);
+        DB::table('products')->insert(['id' => '249', 'ref' => 'COTPROMAT60_PVC', 'nom' => 'Protège-matelas Cotonea + PVC - 60x120', 'prix' => '41.00']);
+        DB::table('products')->insert(['id' => '250', 'ref' => 'COTPROMAT70_PVC', 'nom' => 'Protège-matelas Cotonea + PVC - 70x140', 'prix' => '46.00']);
+        DB::table('products')->insert(['id' => '251', 'ref' => 'AQUSOUORE50', 'nom' => 'Protection literie Sous Taies Coton Bio 220g/m² - 50x70', 'prix' => '18.60']);
+        DB::table('products')->insert(['id' => '252', 'ref' => 'AQUSOUORE65', 'nom' => 'Protection literie Sous Taies Coton Bio 220g/m² - 65x65', 'prix' => '19.90']);
+        DB::table('products')->insert(['id' => '253', 'ref' => 'AQUSOUORE35', 'nom' => 'Protection literie Sous Taies Coton Bio 220g/m² - 35x45', 'prix' => '13.90']);
+        DB::table('products')->insert(['id' => '254', 'ref' => 'AQUSOUORE40', 'nom' => 'Protection literie Sous Taies Coton Bio 220g/m² - 40x60', 'prix' => '15.45']);
+        DB::table('products')->insert(['id' => '255', 'ref' => 'AQUPROMAT180', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 180x200', 'prix' => '67.20']);
+        DB::table('products')->insert(['id' => '256', 'ref' => 'AQUPROMAT60', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 60x120', 'prix' => '27.90']);
+        DB::table('products')->insert(['id' => '257', 'ref' => 'AQUPROMAT70', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 70x140', 'prix' => '30.20']);
+        DB::table('products')->insert(['id' => '258', 'ref' => 'AQUPROMAT70x160', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 70x160', 'prix' => '31.90']);
+        DB::table('products')->insert(['id' => '259', 'ref' => 'AQUPROMAT80', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 80x200', 'prix' => '42.50']);
+        DB::table('products')->insert(['id' => '260', 'ref' => 'AQUPROMAT90', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 90x190', 'prix' => '44.80']);
+        DB::table('products')->insert(['id' => '261', 'ref' => 'AQUPROMAT90x200', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 90x200', 'prix' => '46.10']);
+        DB::table('products')->insert(['id' => '262', 'ref' => 'AQUPROMAT120', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 120x190', 'prix' => '52.70']);
+        DB::table('products')->insert(['id' => '263', 'ref' => 'AQUPROMAT140', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 140x190', 'prix' => '56.10']);
+        DB::table('products')->insert(['id' => '264', 'ref' => 'AQUPROMAT140x200', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 140x200', 'prix' => '57.30']);
+        DB::table('products')->insert(['id' => '265', 'ref' => 'AQUPROMAT160', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 160x200', 'prix' => '61.90']);
+        DB::table('products')->insert(['id' => '266', 'ref' => 'AQUPROMAT180x210', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 180x210', 'prix' => '70.90']);
+        DB::table('products')->insert(['id' => '267', 'ref' => 'AQUPROMAT160x210', 'nom' => ' Protège-matelas Aquanatura Bio 220g/m² - 160x210', 'prix' => '65.30']);
     }
 }
