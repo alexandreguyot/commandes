@@ -33,9 +33,9 @@
                                             <td>{{ $command->livraison }}</td>
                                             <td>{{ $command->TTTC }} €</td>
                                             <td class="d-inline-block">
-                                                <a href="{{ route('get.commandes.edition', ['id' => $command->id]) }}" type="button" class="btn btn-primary"><i class="fas fa-pen"></i></a>
-                                                <a href="{{ route('get.commandes.impression', ['id' => $command->id]) }}" type="button" class="btn btn-warning"><i class="fas fa-print"></i></a>
                                                 <form action="{{ route('delete.commandes.suppression', ['id' => $command->id]) }}" method="post">
+                                                <a href="{{ route('get.commandes.edition', ['id' => $command->id]) }}" type="button" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                                                <a href="{{ route('get.commandes.impression', ['id' => $command->id]) }}" type="button" class="btn btn-warning" target="_Blank"><i class="fas fa-print"></i></a>
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
                                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Etes-vous sur de vouloir supprimer cette commande ?')"><i class="fas fa-trash-alt"></i></button>

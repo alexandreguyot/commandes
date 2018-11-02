@@ -114,8 +114,8 @@ body {
 				tfoot {
 					background-color: white;
 					text-align: right;
+					border-top: 5px solid #ccc;
 					tr {
-						border-top: 5px solid #ccc;
 						td {
 							padding: 15px;
 							padding: 15px;
@@ -127,14 +127,25 @@ body {
 						}
 					}
 				}
-				&.products {
-
+			}
+			table.products {
+				tbody {
+					tr {
+						td {
+							&:nth-child {
+								width: 40%;
+							}
+						}
+					}
 				}
 			}
 			div.home-content {
 				padding: 40px;
 				border-top: 1px solid #ddd;
 			}
+		}
+		.nopadding {
+			padding: 0!important;
 		}
 		.panel-heading {
 			padding: 30px 30px 40px;
@@ -163,5 +174,8 @@ body {
 				font-size: 13px;
 			}
 		}
+	}
+	textarea.form-control {
+		min-height: 200px;
 	}
 }

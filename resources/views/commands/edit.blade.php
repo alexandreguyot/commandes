@@ -104,58 +104,18 @@
                                             <label for="pays">Pays</label>
                                             <input type="text" class="form-control" id="pays" value="{{ $command->client->pays }}" name="pays" placeholder="Pays" required>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="part">
-                                    <div class="form-row">
-                                        <div class="col-md-12">
-                                            <div class="panel-title"><h4>3 / Livraison</h4></div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="livraison">Livraison</label>
-                                            <select id="livraison" name="livraison" class="form-control" required>
-                                                @foreach($livraison as $livraison)
-                                                    <option value="{{$livraison}}" {{$command->livraison === $livraison ? 'selected' : ''}}>{{$livraison}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="prix_livraison">Prix Livraison</label>
-                                            <input type="number" step="0.01" min="0" class="form-control" id="prix_livraison" value="{{ $command->prix_livraison }}" onchange="setPrixLivraison()"  name="prix_livraison" placeholder="Prix Livraison" required>
-                                            <input type="hidden" class="form-control" id="ancien_prix_livraison" value="{{ $command->prix_livraison }}">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="type_paiement">Type de paiement</label>
-                                            <select id="type_paiement" name="type_paiement" class="form-control" required>
-                                                @foreach($type_paiement as $type_paiement)
-                                                    <option value="{{$type_paiement}}" {{$command->type_paiement === $type_paiement ? 'selected' : ''}}>{{ $type_paiement }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="statut">Statut</label>
-                                            <select id="statut" name="statut" class="form-control" required>
-                                                @foreach($statut as $statut)
-                                                    <option value="{{$statut}}" {{$command->statut === $statut ? 'selected' : ''}}>{{$statut}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="remise">Remise</label>
-                                            <input type="number" step="0.01" min="0" class="form-control" id="remise" value="{{ $command->remise }}" onchange="setRemise()" name="remise" placeholder="Remise">
-                                            <input type="hidden" class="form-control" id="ancienne_remise" value="{{ $command->remise }}">
-                                        </div>
                                         <div class="form-group col-md-6">
                                             <label class="checkbox-inline">
-                                                Adresse différente de livraison ? <input type="checkbox" {{ $command->client->livraison_nom ? 'checked' : '' }} name="meme_adresse" id="checkboxMemeAdresse" value="">
+                                                <br/>
+                                                <input type="checkbox" {{ $command->client->livraison_nom ? 'checked' : '' }} name="meme_adresse" id="checkboxMemeAdresse" value="">
+                                                <span><strong>Cliquez ici si l'adresse de livraison est différente</strong> </span>
                                             </label>
                                         </div>
                                     </div>
                                     <div class="form-row" id="champs_livraison">
+                                        <div class="col-md-12">
+                                            <div class="panel-title"><h4>2 / Adresse de facturation</h4></div>
+                                        </div>
                                         <div class="form-group col-md-6">
                                             <label for="livraison_nom">Nom</label>
                                             <input type="text" class="form-control" id="livraison_nom" value="{{ $command->client->livraison_nom }}" name="livraison_nom" placeholder="Nom">
@@ -185,12 +145,36 @@
                                 <div class="part">
                                     <div class="form-row">
                                         <div class="col-md-12">
+                                            <div class="panel-title"><h4>3 / Règlement</h4></div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="type_paiement">Type de paiement</label>
+                                            <select id="type_paiement" name="type_paiement" class="form-control" required>
+                                                @foreach($type_paiement as $type_paiement)
+                                                    <option value="{{$type_paiement}}" {{$command->type_paiement === $type_paiement ? 'selected' : ''}}>{{ $type_paiement }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="statut">Statut</label>
+                                            <select id="statut" name="statut" class="form-control" required>
+                                                @foreach($statut as $statut)
+                                                    <option value="{{$statut}}" {{$command->statut === $statut ? 'selected' : ''}}>{{$statut}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="part">
+                                    <div class="form-row">
+                                        <div class="col-md-12">
                                             <div class="panel-title"><h4>4 / Produits</h4></div>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <label for="list_products">Liste des produits</label>
+                                            <label for="list_products">Cliquez sur la barre ci-dessous afin de sélectionner les produits</label><br/>
                                             <select id="list_products" name="list_products[]" multiple="multiple" class="form-control">
                                                 @foreach($products as $key => $product)
                                                     <option value="{{ $product }}" {{ in_array($product->id, $commandproduct) ? 'selected': '' }}
@@ -200,7 +184,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <div class="panel-title"><h5><strong>Liste des produits dans la commande</strong></h5></div>
+                                        <!-- <div class="panel-title"><h5><strong>Liste des produits dans la commande</strong></h5></div> -->
                                     </div>
                                     <div class="col-md-12">
                                         <table id="products" class="table products">
@@ -240,6 +224,28 @@
 
                                             </tbody>
                                             <tfoot>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <div class="col-md-4 pull-right nopadding">
+                                                        <select id="livraison" name="livraison" class="form-control" required>
+                                                            @foreach($livraison as $livraison)
+                                                                <option value="{{$livraison}}" {{$command->livraison === $livraison ? 'selected' : ''}}>{{$livraison}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <input type="number" step="0.01" min="0" class="form-control" id="prix_livraison" value="{{ $command->prix_livraison }}" onchange="setPrixLivraison()"  name="prix_livraison" placeholder="Prix Livraison" required>
+                                                    <input type="hidden" class="form-control" id="ancien_prix_livraison" value="{{ $command->prix_livraison }}">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">Remise sur<br/>la commande</td>
+                                                <td>
+                                                   <input type="number" step="0.01" min="0" class="form-control" id="remise" value="{{ $command->remise }}" onchange="setRemise()" name="remise" placeholder="Remise">
+                                                   <input type="hidden" class="form-control" id="ancienne_remise" value="{{ $command->remise }}">
+                                                </td>
+                                            </tr>
                                             <tr>
                                                 <td colspan="4">Total TTC</td>
                                                 <td>
