@@ -10,10 +10,10 @@
                         <div class="panel-heading"><h2>Création d'une nouvelle commande</h2></div>
 
                         <div class="panel-body">
-                            <form action="{{route('put.commandes.edition', ['id' => $command->id ])}}">
+                            <form action="{{route('put.commandes.edition', ['id' => $command->id ])}}" method="post">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
-                                <input type="hidden" value="null" id="command_id" value="{{ $command->id }}" name="command_id">
+                                <input type="hidden" id="command_id" value="{{ $command->id }}" name="command_id">
                                 <div class="part">
                                     <div class="form-group col-md-12">
                                         <div class="panel-title"><h4>Informations</h4></div>
@@ -27,7 +27,7 @@
                                         <label for="type">Type</label>
                                         <select id="type" name="type" class="form-control">
                                             @foreach($type as $type)
-                                                <option value="{{$type}}" selected="{{$command->type === $type ? 'selected' : ''}}">{{$type}}</option>
+                                                <option value="{{$type}}" {{$command->type === $type ? 'selected' : ''}}>{{$type}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -45,7 +45,7 @@
                                             {{--@endforeach--}}
                                         {{--</select>--}}
                                     {{--</div>--}}
-                                    <input type="hidden" value="null" id="client_id" value="{{$command->client->client_id}}" name="client_id">
+                                    <input type="hidden" id="client_id" value="{{$command->client->id}}" name="client_id">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="nom">Nom</label>
@@ -75,7 +75,7 @@
                                             <label for="categorie">Catégorie</label>
                                             <select id="categorie" name="categorie" class="form-control">
                                                 @foreach($categorie as $categorie)
-                                                    <option value="{{$categorie}}" selected="{{$command->$categorie === $categorie ? 'selected' : ''}}">{{$categorie}}</option>
+                                                    <option value="{{$categorie}}" {{$command->$categorie === $categorie ? 'selected' : ''}}>{{$categorie}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -117,20 +117,20 @@
                                             <label for="livraison">Livraison</label>
                                             <select id="livraison" name="livraison" class="form-control">
                                                 @foreach($livraison as $livraison)
-                                                    <option value="{{$livraison}}" selected="{{$command->livraison === $livraison ? 'selected' : ''}}">{{$livraison}}</option>
+                                                    <option value="{{$livraison}}" {{$command->livraison === $livraison ? 'selected' : ''}}>{{$livraison}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="prix_livraison">Prix Livraison</label>
-                                            <input type="text" class="form-control" id="prix_livraison" value="{{ $command->prix_livraison }}" onchange="setPrixLivraison()"  name="prix_livraison" placeholder="Prix Livraison">
-                                            <input type="hidden" class="form-control" id="ancien_prix_livraison">
+                                            <input type="number" step="0.01" min="0" class="form-control" id="prix_livraison" value="{{ $command->prix_livraison }}" onchange="setPrixLivraison()"  name="prix_livraison" placeholder="Prix Livraison">
+                                            <input type="hidden" class="form-control" id="ancien_prix_livraison" value="{{ $command->prix_livraison }}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="type_paiement">Type de paiement</label>
                                             <select id="type_paiement" name="type_paiement" class="form-control">
                                                 @foreach($type_paiement as $type_paiement)
-                                                    <option value="{{$type_paiement}}" selected="{{$command->type_paiement === $type_paiement ? 'selected' : ''}}">{{ $type_paiement }}</option>
+                                                    <option value="{{$type_paiement}}" {{$command->type_paiement === $type_paiement ? 'selected' : ''}}>{{ $type_paiement }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -138,7 +138,7 @@
                                             <label for="statut">Statut</label>
                                             <select id="statut" name="statut" class="form-control">
                                                 @foreach($statut as $statut)
-                                                    <option value="{{$statut}}" selected="{{$command->statut === $statut ? 'selected' : ''}}">{{$statut}}</option>
+                                                    <option value="{{$statut}}" {{$command->statut === $statut ? 'selected' : ''}}>{{$statut}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -146,8 +146,8 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="remise">Remise</label>
-                                            <input type="text" class="form-control" id="remise" value="{{ $command->remise }}" onchange="setRemise()" name="remise" placeholder="Remise">
-                                            <input type="hidden" class="form-control" id="ancienne_remise">
+                                            <input type="number" step="0.01" min="0" class="form-control" id="remise" value="{{ $command->remise }}" onchange="setRemise()" name="remise" placeholder="Remise">
+                                            <input type="hidden" class="form-control" id="ancienne_remise" value="{{ $command->remise }}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="checkbox-inline">

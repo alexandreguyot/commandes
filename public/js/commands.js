@@ -86,6 +86,7 @@ function setPrixLivraison() {
 	if (ancien_prix > prix) {
 		totale -= (ancien_prix - prix);
 	}
+
 	if (ancien_prix < prix) {
 		totale -= ancien_prix;
 		totale += prix;
