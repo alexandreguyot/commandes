@@ -14,11 +14,10 @@
                                     <tr>
                                         <th>Numéro</th>
                                         <th>Date</th>
+                                        <th>Nom</th>
                                         <th>Type</th>
-                                        <th>Type de Paiement</th>
                                         <th>Statut</th>
                                         <th>Livraison</th>
-                                        <th>THT</th>
                                         <th>TTTC</th>
                                         <th>Action</th>
                                     </tr>
@@ -26,20 +25,18 @@
                                         <tr>
                                             <td>{{ $command->id }}</td>
                                             <td>{{ $command->date }}</td>
+                                            <td>??</td>
                                             <td>{{ $command->type }}</td>
-                                            <td>{{ $command->type_paiement }}</td>
                                             <td>{{ $command->statut }}</td>
                                             <td>{{ $command->livraison }}</td>
-                                            <td>{{ $command->THT }} €</td>
                                             <td>{{ $command->TTTC }} €</td>
                                             <td>
-                                                <a href="{{ route('get.commandes.edition', ['id' => $command->id]) }}" type="button" class="btn btn-primary">Editer</a>
+                                                <a href="{{ route('get.commandes.edition', ['id' => $command->id]) }}" type="button" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                                                <a href="{{ route('get.commandes.impression', ['id' => $command->id]) }}" type="button" class="btn btn-warning"><i class="fas fa-print"></i></a>
                                                 <form action="{{ route('delete.commandes.suppression', ['id' => $command->id]) }}" method="post">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                                                    </div>
+                                                    <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
