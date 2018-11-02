@@ -210,9 +210,9 @@
                                                             {{ $product->prix }} €
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="btn btn-default btn-sm" onclick="deleteNumberProduct({{ $product->prix }}, {{$product->pivot->nombre }})">-</button>
+                                                            <button type="button" class="btn btn-default btn-sm" onclick="deleteNumberProduct({{ $product->id }}, {{$product->prix }})">-</button>
                                                             <input id="product_{{ $product->id }}_numb" name="products[{{ $product->id }}][nombre]" value="{{ $product->pivot->nombre }}">
-                                                            <button type="button" class="btn btn-default btn-sm" onclick="addNumberProduct({{ $product->prix }}, {{ $product->pivot->nombre }})">+</button>
+                                                            <button type="button" class="btn btn-default btn-sm" onclick="addNumberProduct({{ $product->id }}, {{ $product->prix }})">+</button>
                                                         </td>
                                                         <td>
                                                             <button type="button" class="btn btn-default btn-sm" onclick="removeProduct( {{$product->id}}, '{{ $product->ref }}','{{ $product->nom }}', {{ $product->prix }});">
