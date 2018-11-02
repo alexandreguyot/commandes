@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="form-row" id="champs_livraison">
                                         <div class="col-md-12">
-                                            <div class="panel-title"><h4>2 / Adresse de facturation</h4></div>
+                                            <div class="panel-title"><h4>2 / Adresse de livraison</h4></div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="livraison_nom">Nom</label>
