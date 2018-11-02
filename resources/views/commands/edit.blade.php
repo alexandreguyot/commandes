@@ -254,7 +254,7 @@
                                 <div class="part">
                                     <div class="form-group col-md-12">
                                         <label for="commentaires">Commentaires</label>
-                                        <textarea class="form-control" id="commentaires" value="{{ $command->commentaires }}" name="commentaires" placeholder="Commentaires"></textarea>
+                                        <textarea class="form-control" id="commentaires" name="commentaires" placeholder="Commentaires">{{ $command->commentaires }}</textarea>
                                     </div>
                                 </div>
                                 <div class="part">
