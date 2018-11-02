@@ -71,6 +71,11 @@ function removeTotalePrice(prix, nb) {
 	setPrice();
 }
 function setPrice() {
+	const remise = parseFloat($('#remise').val());
+	const test = totale + 2*remise;
+	if (remise === test) {
+		totale = remise;
+	}
 	$('#TTTC').val(totale);
 	$('#totale_label').text(totale+ ' €')
 }
@@ -79,14 +84,28 @@ function setPrixLivraison() {
 	const ancien_prix = $('#ancien_prix_livraison').val() ? parseFloat($('#ancien_prix_livraison').val()) : 0;
 	const prix = parseFloat($('#prix_livraison').val());
 	if (ancien_prix > prix) {
-		totale -= (ancien_prix - prix);
-	}
-
-	if (ancien_prix < prix) {
 		totale -= ancien_prix;
 		totale += prix;
 	}
+
+	if (ancien_prix < prix) {
+		totale += ancien_prix;
+		totale -= prix;
+	}
 	$('#ancien_prix_livraison').val(prix);
+	setPrice();
+}
+
+function calculPrix(){
+	const remise = parseFloat ($('#remise').val()) ? parseFloat($('#remise').val()) : 0;
+	const ancienne_remise = parseFloat ($('#ancienne_remise').val()) ? parseFloat($('#ancienne_remise').val()) : 0;
+	const prix_livraison = parseFloat($('#prix_livraison').val()) ? parseFloat($('#prix_livraison').val()) : 0;
+	const ancien_prix_livraison = parseFloat($('#ancien_prix_livraison').val()) ? parseFloat($('#ancien_prix_livraison').val()) : 0;
+
+	totale = totale - ancien_prix_livraison + ancienne_remise;
+	totale = totale + prix_livraison - remise;
+	$('#ancienne_remise').val(remise);
+	$('#ancien_prix_livraison').val(prix_livraison);
 	setPrice();
 }
 
@@ -94,12 +113,12 @@ function setRemise() {
 	const ancien_prix = $('#ancienne_remise').val() ? parseFloat($('#ancienne_remise').val()) : 0;
 	const prix = parseFloat($('#remise').val());
 	if (ancien_prix > prix) {
-		totale += ancien_prix;
-		totale -= prix;
+		totale -= ancien_prix;
+		totale += prix;
 	}
 	if (ancien_prix < prix) {
-		totale += ancien_prix;
-		totale -= prix;
+		totale -= ancien_prix;
+		totale += prix;
 	}
 	$('#ancienne_remise').val(prix);
 	setPrice();

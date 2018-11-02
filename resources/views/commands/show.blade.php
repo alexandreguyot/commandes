@@ -215,14 +215,14 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                       <input type="number" step="0.01" min="0" class="form-control" id="prix_livraison" onchange="setPrixLivraison()" name="prix_livraison" placeholder="Prix Livraison" required>
+                                                       <input type="number" step="0.01" min="0" class="form-control" id="prix_livraison" onchange="calculPrix()" name="prix_livraison" placeholder="Prix Livraison" required>
                                                        <input type="hidden" class="form-control" id="ancien_prix_livraison">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4">Remise sur<br/>la commande</td>
                                                     <td>
-                                                       <input type="number" step="0.01" min="0" class="form-control" id="remise" onchange="setRemise()" name="remise" placeholder="Remise">
+                                                       <input type="number" step="0.01" min="0" class="form-control" id="remise" onchange="calculPrix()" name="remise" placeholder="Remise">
                                                        <input type="hidden" class="form-control" id="ancienne_remise">
                                                     </td>
                                                 </tr>
